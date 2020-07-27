@@ -1,0 +1,51 @@
+<html>
+<head>
+
+<title>test</title>
+
+<script type="text/javascript" src = 'S3DProxy.js'></script> 	
+
+</head>
+
+<body onload="S3DProxy.Init()">
+
+    Src:&nbsp;<input type="text" value="example.jpg" onChange="S3DProxy.setSrc(this.value,this.value);">
+
+    SrcFmt:&nbsp;<select onChange="javascript:S3DProxy.setSrcFormat(this.value);">
+      <option value="LR">LR</option>
+      <option value="RL">RL</option>
+      <option value="L+R">L+R</option>
+    </select>
+
+    Width:&nbsp;<select onChange="javascript:S3DProxy.setWidth(this.value);">
+      <option value="fit_window">Fit window</option>
+      <option value="1024">1024</option>
+      <option value="800">800</option>
+      <option value="640">640</option>
+      <option value="320">320</option>
+      <option value="240">320</option>
+    </select>
+
+    OutputFmt:&nbsp;<select onChange="javascript:S3DProxy.setOutputFormat(this.value);">
+      <optgroup label="Side by side">
+        <option value="parallel">Parallel</option>
+        <option value="cross">Cross</option>
+      </optgroup>
+      <optgroup label="Anaglyph">
+        <option value="red-cyan">Red-Cyan</option>
+        <option value="green-magenta">Green-Magenta</option>
+        <option value="gray-anaglyphs">Gray Anaglyphs</option>
+        <option value="color-anaglyphs">Color Anaglyphs</option>
+        <option value="half-color-anaglyphs">Half Color Anaglyphs</option>
+      </optgroup>
+    </select>
+    <hr />
+    <span id="s3durl">url</span>
+    <span id="s3derr">err</span>
+    <hr />
+
+  <svg viewBox="0 0 100 100">
+   <use xlink:href="S3DProxy.svg"></use>
+  </svg>
+ </body>
+</html>
