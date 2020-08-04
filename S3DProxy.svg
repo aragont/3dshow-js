@@ -1,4 +1,4 @@
-  <svg style="position:absolute; height:0; width:0; overflow:none; left:-100%;">'
+<svg style="position:absolute; height:0; width:0; overflow:none; left:-100%;">
   <filter id="s3dred" color-interpolation-filters="sRGB"
       x="0" y="0" height="100%" width="100%">
   <feColorMatrix type="matrix"

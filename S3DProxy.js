@@ -6,7 +6,7 @@
 /** @module S3DProxy*/
 var S3DProxy=(function(my){
 
-my.setSrc=function(srcL,srcR) {
+my.setSrc=function(srcL, srcR) {
   document.getElementById('s3dL').src=srcL;
   document.getElementById('s3dR').src=srcR;
 }
@@ -14,8 +14,8 @@ my.setSrc=function(srcL,srcR) {
 my.setWidth=function(width) {
   switch(width){ 
   case 'fit_window':
-    my.width=100;
-    my.widthUnit='%';
+    my.width='';
+    my.widthUnit='';
     break;
   default:
     my.width=width;
@@ -71,16 +71,18 @@ my.setOutputFormat=function(format) {
   document.getElementById('s3dR').style.width=(my.imgWidth*2).toString()+my.widthUnit;
   document.getElementById('s3dL').style.marginLeft=(-my.srcOffsetL*2-my.offsetL).toString()+my.widthUnit;
   document.getElementById('s3dR').style.marginLeft=(-my.srcOffsetR*2-my.offsetR).toString()+my.widthUnit;
+  //document.getElementById('s3dL').style.maxHeight='100%';
+  //document.getElementById('s3dR').style.maxHeight='100%';
 
   switch(format){
   case 'red-cyan':
-    document.getElementById('s3dL').style.filter='url(#s3dcyan)';
-    document.getElementById('s3dR').style.filter='url(#s3dred)';
+    document.getElementById('s3dL').style.filter='url(S3DProxy.svg#s3dcyan)';
+    document.getElementById('s3dR').style.filter='url(S3DProxy.svg#s3dred)';
     document.getElementById('s3dR').style.opacity=0.5;
     break;
   case 'green-magenta':
-    document.getElementById('s3dL').style.filter='url(#s3dmagenta)';
-    document.getElementById('s3dR').style.filter='url(#s3dgreen)';
+    document.getElementById('s3dL').style.filter='url(S3DProxy.svg#s3dmagenta)';
+    document.getElementById('s3dR').style.filter='url(S3DProxy.svg#s3dgreen)';
     document.getElementById('s3dR').style.opacity=0.5;
     break;
   case 'cross':
@@ -103,9 +105,7 @@ my.setOutputFormat=function(format) {
   }
 }
 
-
-my.Init=function() {
-
+my.createHtml=function() {
   //document.body.appendChild(canvas2);
   var container = document.getElementById('s3d_container');
   if(container == null){
@@ -124,25 +124,28 @@ my.Init=function() {
   imgR.style.left='50%';
   container.appendChild(imgL);
   container.appendChild(imgR);
-
-
-  var urlParts = document.URL.split('#');
-  if ( urlParts.length == 1) {
-    my.srcL = 'example.jpg';
-    my.srcR = 'example.jpg'; 
-    my.srcFormat='LR';
-    my.outputFormat='P';
-  } 
-  my.srcL = (urlParts.length > 1) ? urlParts[1] : 'example.jpg';
-  my.srcR = (urlParts.length > 2) ? urlParts[2] : srcL;
-  my.srcFormat=(urlParts.length > 3) ? urlParts[3] : 'LR';
-  my.outputFormat=(urlParts.length > 4) ? urlParts[4] : 'P';
-  my.setSrc(srcL,srcR);
-  my.setWidth('fit_window');
-  my.HandleImg();
 }
 
-my.HandleImg=function () {
+my.createInputBar=function() {
+  document.getElementById('s3d_srcL').value=my.srcL;
+}
+
+my.init=function() {
+  var urlParts = document.URL.split('#');
+  my.srcL = (urlParts.length > 1) ? urlParts[1] : 'images/v_small_example.jpg';
+  my.srcR = (urlParts.length > 2) ? urlParts[2] : my.srcL;
+  my.srcFormat=(urlParts.length > 3) ? urlParts[3] : 'LR';
+  my.outputFormat=(urlParts.length > 4) ? urlParts[4] : 'P';
+
+  my.createHtml();
+  my.createInputBar();
+
+  my.setSrc(my.srcL, my.srcR);
+  my.setWidth('fit_window');
+  my.handleImg();
+}
+
+my.handleImg=function () {
 
 }
 

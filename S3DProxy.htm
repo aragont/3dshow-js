@@ -1,15 +1,16 @@
 <html>
 <head>
 
-<title>test</title>
+<title>S3DProxy</title>
 
+<link rel="stylesheet" type="text/css" href="S3DProxy.css">
 <script type="text/javascript" src = 'S3DProxy.js'></script> 	
 
 </head>
 
-<body onload="S3DProxy.Init()">
+<body onload="S3DProxy.init()">
 
-    Src:&nbsp;<input type="text" value="example.jpg" onChange="S3DProxy.setSrc(this.value,this.value);">
+    Src:&nbsp;<input type="text" id="s3d_srcL" value="" onChange="S3DProxy.setSrc(this.value,this.value);">
 
     SrcFmt:&nbsp;<select onChange="javascript:S3DProxy.setSrcFormat(this.value);">
       <option value="LR">LR</option>
@@ -44,8 +45,5 @@
     <span id="s3derr">err</span>
     <hr />
 
-  <svg viewBox="0 0 100 100">
-   <use xlink:href="S3DProxy.svg"></use>
-  </svg>
  </body>
 </html>

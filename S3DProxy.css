@@ -1,0 +1,15 @@
+html {
+  height:100%;
+}
+
+body {
+  height:100%;
+}
+
+#s3d_container {
+  height:100%;
+}
+
+#s3dL, #s3dR {
+  max-height:100%;
+}
